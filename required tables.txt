@@ -1,0 +1,96 @@
+CREATE TABLE wallets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL UNIQUE,
+    balance DECIMAL(10, 2) DEFAULT 0.00,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE wallet_transactions (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    wallet_id INT NOT NULL,
+    user_id INT NOT NULL,
+    amount DECIMAL(10, 2) NOT NULL,
+    type ENUM('credit', 'debit') NOT NULL, -- e.g., 'credit' for top-up, 'debit' for purchase
+    description VARCHAR(255),
+    transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (wallet_id) REFERENCES wallets(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE rewards (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    reward_name VARCHAR(100) NOT NULL,
+    description TEXT,
+    value DECIMAL(10, 2), -- e.g., discount amount or points
+    type ENUM('coupon', 'wallet_credit', 'points') NOT NULL,
+    expiry_date DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE user_rewards (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    reward_id INT NOT NULL,
+    status ENUM('active', 'used', 'expired') DEFAULT 'active',
+    assigned_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    used_date DATETIME DEFAULT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (reward_id) REFERENCES rewards(id) ON DELETE CASCADE,
+    UNIQUE (user_id, reward_id, status) -- Optional: prevent duplicate active rewards
+);
+
+CREATE TABLE orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    order_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    total_amount DECIMAL(10, 2) NOT NULL,
+    status ENUM('Pending', 'Processing', 'Shipped', 'Delivered', 'Cancelled') DEFAULT 'Pending',
+    shipping_address_id INT, -- Link to addresses table
+    payment_method_id INT,   -- Link to payment_methods table
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    -- FOREIGN KEY (shipping_address_id) REFERENCES addresses(id) ON DELETE SET NULL,
+    -- FOREIGN KEY (payment_method_id) REFERENCES payment_methods(id) ON DELETE SET NULL
+);
+
+CREATE TABLE order_items (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    order_id INT NOT NULL,
+    product_id INT NOT NULL,
+    quantity INT NOT NULL,
+    price DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE RESTRICT -- Assuming a 'products' table
+);
+
+CREATE TABLE addresses (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
+    street_address VARCHAR(255) NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    state VARCHAR(100) NOT NULL,
+    postal_code VARCHAR(20) NOT NULL,
+    phone_number VARCHAR(20),
+    type ENUM('billing', 'shipping', 'other') DEFAULT 'shipping',
+    is_default BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE payment_methods (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    card_type VARCHAR(50), -- e.g., 'Visa', 'Mastercard'
+    last_four_digits VARCHAR(4) NOT NULL,
+    expiry_month INT NOT NULL,
+    expiry_year INT NOT NULL,
+    cardholder_name VARCHAR(255),
+    tokenized_card_data TEXT, -- Store tokenized data, NEVER raw card numbers
+    is_default BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+

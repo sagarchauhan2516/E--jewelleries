@@ -1,0 +1,31 @@
+Since you prefer free or low-cost tools, here’s the best approach for learning AR for your **E-Jewellery shop** project:  
+
+### **Free Alternatives to Paid Tools**  
+✅ **Instead of 8thWall** → Use **WebXR + Three.js** (completely free, but requires more coding).  
+✅ **Instead of Paid WebAR SDKs** → Use **MindAR** (good for marker-based AR, free & open-source).  
+✅ **For Face & Hand Tracking** → Use **MediaPipe (by Google)** (free & works well for jewellery try-on).  
+
+---
+
+### **Structured Learning Plan (All Free Resources)**  
+
+1️⃣ **Learn Three.js (for 3D Jewellery Rendering) – 2 Weeks**  
+   📌 Free Course: [Three.js Crash Course on YouTube](https://www.youtube.com/watch?v=Q7AOvWpIVHU)  
+   🔥 *Goal:* Load 3D jewellery models and display them in a browser.  
+
+2️⃣ **Learn WebXR (for AR support) – 1 Week**  
+   📌 Free Guide: [Mozilla’s WebXR Docs](https://developer.mozilla.org/en-US/docs/Web/API/WebXR_Device_API)  
+   🔥 *Goal:* Add AR support to your jewellery models.  
+
+3️⃣ **Learn MindAR (for Marker-Based Jewellery Try-On) – 1 Week**  
+   📌 Docs: [MindAR GitHub](https://github.com/MindAR-js)  
+   🔥 *Goal:* Overlay earrings or necklaces on a detected face.  
+
+4️⃣ **Learn MediaPipe (for Hand Tracking) – 1 Week**  
+   📌 Free Guide: [MediaPipe Hands API](https://developers.google.com/mediapipe/solutions/vision/hand_landmarker)  
+   🔥 *Goal:* Detect fingers and place rings/bracelets virtually.  
+
+---
+
+### **Next Steps**
+- If you're interested, I can help you with a **starter project** using **Three.js + WebXR** for AR jewellery try-on. Let me know! 🚀
