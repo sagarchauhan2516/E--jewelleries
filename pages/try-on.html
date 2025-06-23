@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Ring Try-On</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars */
+            background-color: #333; /* Dark background for contrast */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            position: relative;
+            width: 640px; /* Fixed width for the video container */
+            height: 480px; /* Fixed height for the video container */
+            overflow: hidden; /* Hide any overflow from canvases */
+            background-color: black;
+        }
+
+        #webcamVideo,
+        #videoCanvas,
+        #threeCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%; /* Make them fill the container */
+            height: 100%;
+        }
+
+        /* Order of layers: Video -> MediaPipe 2D drawing -> Three.js 3D model */
+        #webcamVideo {
+            z-index: 1; /* Lowest layer, but often hidden if drawing on canvas */
+            /* You can uncomment display: none if you don't want to see the raw video feed */
+            /* display: none; */
+        }
+
+        #videoCanvas {
+            z-index: 5; /* Middle layer, for MediaPipe landmarks */
+        }
+
+        #threeCanvas {
+            z-index: 10; /* Top layer, for your 3D ring */
+            pointer-events: none; /* Allows clicks/interactions to pass through to elements below if any */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video id="webcamVideo" autoplay playsinline muted></video>
+        <canvas id="videoCanvas"></canvas> <canvas id="threeCanvas"></canvas> </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+
+    <script src="../assets/js/try.js"></script>
+</body>
+</html>

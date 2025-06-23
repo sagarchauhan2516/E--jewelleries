@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hand Detection Demo</title>
+    <style>
+        body { 
+            text-align: center; 
+            font-family: Arial, sans-serif; 
+            background-color: #f5f5f5;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .video-container {
+            position: relative;
+            display: inline-block;
+            border: 8px solid #ffcc00; /* Beautiful border */
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        video {
+            display: none; /* Hide the video */
+        }
+        canvas {
+            width: 100%;
+            max-width: 600px;
+            height: auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hand Tracking Demo</h1>
+    <div class="container">
+        <div class="video-container">
+            <video id="video" autoplay></video>
+            <canvas id="canvas"></canvas>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-core"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-converter"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-webgl"></script>
+    <script>
+        const videoElement = document.getElementById("video");
+        const canvasElement = document.getElementById("canvas");
+        const ctx = canvasElement.getContext("2d");
+
+        async function setupCamera() {
+            const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+            videoElement.srcObject = stream;
+            return new Promise((resolve) => {
+                videoElement.onloadedmetadata = () => {
+                    resolve(videoElement);
+                };
+            });
+        }
+
+        async function loadHandTracking() {
+            const hands = new window.Hands({
+                locateFile: (file) => `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`,
+            });
+
+            hands.setOptions({
+                maxNumHands: 2,
+                modelComplexity: 1,
+                minDetectionConfidence: 0.5,
+                minTrackingConfidence: 0.5,
+            });
+
+            hands.onResults(drawResults);
+
+            await setupCamera();
+            videoElement.play();
+            processVideo(hands);
+        }
+
+        async function processVideo(hands) {
+            const videoWidth = videoElement.videoWidth;
+            const videoHeight = videoElement.videoHeight;
+            canvasElement.width = videoWidth;
+            canvasElement.height = videoHeight;
+
+            async function detect() {
+                await hands.send({ image: videoElement });
+                requestAnimationFrame(detect);
+            }
+            detect();
+        }
+
+        function drawResults(results) {
+            ctx.clearRect(0, 0, canvasElement.width, canvasElement.height);
+            ctx.drawImage(videoElement, 0, 0, canvasElement.width, canvasElement.height); // Draw video on canvas
+
+            if (results.multiHandLandmarks) {
+                results.multiHandLandmarks.forEach((landmarks) => {
+                    ctx.strokeStyle = "red";
+                    ctx.lineWidth = 3;
+
+                    // Draw circles on key points
+                    landmarks.forEach((point) => {
+                        ctx.beginPath();
+                        ctx.arc(point.x * canvasElement.width, point.y * canvasElement.height, 5, 0, 2 * Math.PI);
+                        ctx.fillStyle = "blue";
+                        ctx.fill();
+                    });
+                });
+            }
+        }
+
+        loadHandTracking();
+    </script>
+</body>
+</html>

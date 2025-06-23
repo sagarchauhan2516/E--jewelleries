@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile | E-Jewellery shop</title>
+  <link rel="stylesheet" href="../assets/css/profile.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="profile-summary">
+        <label for="avatarUpload">
+          <img id="avatarPreview" src="../images/WhatsApp Image 2025-05-10 at 22.33.47_8dd887ca.jpg" alt="Avatar" style="cursor:pointer;">
+          <input type="file" id="avatarUpload" style="display: none;" accept="image/*">
+        </label>
+        <h2>Solanki Shivani</h2>
+      </div>
+      <nav>
+        <ul>
+          <li class="active" data-section="wallet">My Wallet</li>
+          <li data-section="rewards">My Rewards</li>
+          <li data-section="orders">My Orders</li>
+          <li data-section="personal">Personal Information</li>
+          <li data-section="addresses">Addresses</li>
+          <li data-section="payment-methods">Payment Methods</li>
+          <li data-section="faqs">FAQs</li>
+          <li data-section="signout">Sign Out</li>
+        </ul>
+      </nav>
+    </aside>
+
+    <main>
+      <!-- Wallet -->
+      <section id="wallet" class="tab-content active">
+        <h1>My Wallet</h1>
+        <div style="background:#fff; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.05);">
+          <h2>Current Balance</h2>
+          <p style="font-size: 24px; font-weight: bold; color: #d4a017;">₹ 3,250.00</p>
+      
+          <div style="margin: 20px 0;">
+            <button style="padding:10px 20px; background-color:#d4a017; color:#fff; border:none; border-radius:5px; margin-right:10px;">Add Money</button>
+            <button style="padding:10px 20px; background-color:#555; color:#fff; border:none; border-radius:5px;">Withdraw</button>
+          </div>
+      
+          <h3>Recent Transactions</h3>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            <thead>
+              <tr style="background-color: #f1f1f1;">
+                <th style="padding: 10px; text-align: left;">Date</th>
+                <th style="padding: 10px; text-align: left;">Description</th>
+                <th style="padding: 10px; text-align: right;">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 10px;">01 May 2025</td>
+                <td style="padding: 10px;">Purchase at E-Jewellery</td>
+                <td style="padding: 10px; text-align: right;">- ₹1,200.00</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px;">28 Apr 2025</td>
+                <td style="padding: 10px;">Wallet Top-Up</td>
+                <td style="padding: 10px; text-align: right;">+ ₹2,000.00</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px;">20 Apr 2025</td>
+                <td style="padding: 10px;">Referral Reward</td>
+                <td style="padding: 10px; text-align: right;">+ ₹500.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      
+
+      <!-- Rewards -->
+      <section id="rewards" class="tab-content">
+        <h1>My Rewards</h1>
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+          
+          <h2>Available Rewards</h2>
+          <div style="display: flex; flex-wrap: wrap; gap: 15px; margin-bottom: 25px;">
+            <div style="flex: 1 1 250px; padding: 15px; border: 1px solid #eee; border-radius: 8px; background-color: #fef6e0;">
+              <h3 style="margin: 0;">₹200 Off</h3>
+              <p style="margin: 5px 0;">On minimum order of ₹1000</p>
+              <small>Expires: 10 May 2025</small>
+              <button style="margin-top: 10px; padding: 6px 12px; background-color: #d4a017; color: white; border: none; border-radius: 4px;">Apply Now</button>
+            </div>
+      
+            <div style="flex: 1 1 250px; padding: 15px; border: 1px solid #eee; border-radius: 8px; background-color: #e6f7f5;">
+              <h3 style="margin: 0;">Free Shipping</h3>
+              <p style="margin: 5px 0;">On orders over ₹500</p>
+              <small>Expires: 15 May 2025</small>
+              <button style="margin-top: 10px; padding: 6px 12px; background-color: #d4a017; color: white; border: none; border-radius: 4px;">Apply Now</button>
+            </div>
+          </div>
+      
+          <h3>Reward History</h3>
+          <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+            <thead>
+              <tr style="background-color: #f1f1f1;">
+                <th style="padding: 10px; text-align: left;">Date</th>
+                <th style="padding: 10px; text-align: left;">Reward</th>
+                <th style="padding: 10px; text-align: left;">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 10px;">27 Apr 2025</td>
+                <td style="padding: 10px;">₹100 Off Coupon</td>
+                <td style="padding: 10px;">Used</td>
+              </tr>
+              <tr>
+                <td style="padding: 10px;">15 Apr 2025</td>
+                <td style="padding: 10px;">Signup Bonus</td>
+                <td style="padding: 10px;">Added to Wallet</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+      
+
+      <!-- Orders -->
+      <section id="orders" class="tab-content">
+        <h1>My Orders</h1>
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+      
+            <!-- Order Card 1 -->
+            <div style="border: 1px solid #eee; padding: 15px; border-radius: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h3 style="margin: 0;">Order #123456</h3>
+                  <small>Placed on: 29 April 2025</small>
+                </div>
+                <span style="padding: 5px 10px; background-color: #dff0d8; color: #3c763d; border-radius: 4px;">Delivered</span>
+              </div>
+              <hr style="margin: 10px 0;">
+              <div style="display: flex; align-items: center; gap: 15px;">
+                <img src="/images/product1.jpg" alt="Ring" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px;">
+                <div>
+                  <strong>Gold Plated Ring</strong>
+                  <p style="margin: 5px 0;">Qty: 1 &nbsp;|&nbsp; ₹1,200.00</p>
+                </div>
+              </div>
+            </div>
+      
+            <!-- Order Card 2 -->
+            <div style="border: 1px solid #eee; padding: 15px; border-radius: 8px;">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div>
+                  <h3 style="margin: 0;">Order #123457</h3>
+                  <small>Placed on: 20 April 2025</small>
+                </div>
+                <span style="padding: 5px 10px; background-color: #fcf8e3; color: #8a6d3b; border-radius: 4px;">Pending</span>
+              </div>
+              <hr style="margin: 10px 0;">
+              <div style="display: flex; align-items: center; gap: 15px;">
+                <img src="/images/product2.jpg" alt="Necklace" style="width: 60px; height: 60px; object-fit: cover; border-radius: 6px;">
+                <div>
+                  <strong>Silver Necklace</strong>
+                  <p style="margin: 5px 0;">Qty: 2 &nbsp;|&nbsp; ₹3,400.00</p>
+                </div>
+              </div>
+            </div>
+      
+          </div>
+        </div>
+      </section>
+      
+
+      <!-- Personal Information -->
+      <section id="personal" class="tab-content">
+        <h1>Personal Information</h1>
+        <p class="subtext">Manage your personal details and preferences.</p>
+        <form id="profileForm">
+          <div class="input-group">
+            <input type="text" placeholder="First Name" required>
+            <input type="text" placeholder="Last Name" required>
+          </div>
+          <input type="email" placeholder="Email" required>
+          <input type="tel" placeholder="Phone Number" required>
+          <input type="date" placeholder="Date of Birth">
+
+          <div class="gender-toggle">
+            <button type="button" class="gender-btn active" onclick="selectGender('male')">Male</button>
+            <button type="button" class="gender-btn" onclick="selectGender('female')">Female</button>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="save-btn">Save</button>
+            <button type="reset" class="cancel-btn">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Addresses -->
+      <section id="addresses" class="tab-content">
+        <h1>My Addresses</h1>
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      
+          <!-- Existing Addresses -->
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="border: 1px solid #eee; padding: 15px; border-radius: 8px;">
+              <strong>Home Address</strong>
+              <p style="margin: 8px 0;">Shivani Solanki<br>123, Diamond Street<br>Ahmedabad, Gujarat, 380001</p>
+              <p>Phone: +91 98765 43210</p>
+              <button style="padding: 5px 10px; background-color: #d4a017; color: #fff; border: none; border-radius: 4px;">Edit</button>
+              <button style="padding: 5px 10px; background-color: #ccc; border: none; border-radius: 4px; margin-left: 5px;">Delete</button>
+            </div>
+      
+            <div style="border: 1px solid #eee; padding: 15px; border-radius: 8px;">
+              <strong>Office Address</strong>
+              <p style="margin: 8px 0;">E-Jewellery Pvt Ltd<br>45, Sapphire Tower<br>Surat, Gujarat, 395003</p>
+              <p>Phone: +91 91234 56789</p>
+              <button style="padding: 5px 10px; background-color: #d4a017; color: #fff; border: none; border-radius: 4px;">Edit</button>
+              <button style="padding: 5px 10px; background-color: #ccc; border: none; border-radius: 4px; margin-left: 5px;">Delete</button>
+            </div>
+          </div>
+      
+          <!-- Add New Address -->
+          <hr style="margin: 30px 0;">
+          <h3>Add New Address</h3>
+          <form id="addAddressForm" style="display: flex; flex-direction: column; gap: 10px; max-width: 500px;">
+            <input type="text" placeholder="Full Name" required>
+            <input type="text" placeholder="Street Address" required>
+            <input type="text" placeholder="City" required>
+            <input type="text" placeholder="State" required>
+            <input type="text" placeholder="Postal Code" required>
+            <input type="tel" placeholder="Phone Number" required>
+            <div>
+              <button type="submit" style="padding: 8px 16px; background-color: #d4a017; color: white; border: none; border-radius: 5px;">Save Address</button>
+            </div>
+          </form>
+        </div>
+      </section>
+      
+
+      <!-- Payment Methods -->
+      <section id="payment-methods" class="tab tab-content">
+        <h1>Payment Methods</h1>
+        <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+          <div style="display: flex; flex-direction: column; gap: 20px;">
+            <div style="border: 1px solid #eee; padding: 15px; border-radius: 8px;">
+              <strong>Visa Ending in 4242</strong>
+              <p>Expiry: 12/2026</p>
+              <button>Edit</button>
+              <button>Remove</button>
+            </div>
+          </div>
+      
+          <hr style="margin: 30px 0;">
+          <h3>Add New Card</h3>
+          <form>
+            <input type="text" placeholder="Cardholder Name" required>
+            <input type="text" placeholder="Card Number" required>
+            <div style="display: flex; gap: 10px;">
+              <input type="text" placeholder="MM/YY" required>
+              <input type="text" placeholder="CVV" required>
+            </div>
+            <button type="submit">Save Card</button>
+          </form>
+        </div>
+      </section>
+      
+
+     <!-- FAQs -->
+<section id="faqs" class="tab-content">
+    <h1>Frequently Asked Questions (FAQs)</h1>
+    <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+      <h2>General Questions</h2>
+      
+      <!-- FAQ 1 -->
+      <div style="margin-bottom: 15px;">
+        <h3 style="margin: 0;">What is E-Jewellery?</h3>
+        <p>E-Jewellery is an online platform where you can explore and purchase high-quality jewellery for all occasions.</p>
+      </div>
+      
+      <!-- FAQ 2 -->
+      <div style="margin-bottom: 15px;">
+        <h3 style="margin: 0;">How can I track my order?</h3>
+        <p>Once your order has shipped, you will receive a tracking number to monitor the status of your delivery.</p>
+      </div>
+      
+      <!-- FAQ 3 -->
+      <div style="margin-bottom: 15px;">
+        <h3 style="margin: 0;">How do I add a payment method?</h3>
+        <p>You can add or update your payment method in the "Payment Methods" section of your profile.</p>
+      </div>
+  
+      <h2>Shipping & Returns</h2>
+      
+      <!-- FAQ 4 -->
+      <div style="margin-bottom: 15px;">
+        <h3 style="margin: 0;">What are the shipping options?</h3>
+        <p>We offer standard and expedited shipping options. You can select your preferred shipping method during checkout.</p>
+      </div>
+      
+      <!-- FAQ 5 -->
+      <div style="margin-bottom: 15px;">
+        <h3 style="margin: 0;">How do I return an item?</h3>
+        <p>To return an item, please visit the "My Orders" section and follow the return instructions. Returns are accepted within 30 days of purchase.</p>
+      </div>
+    </div>
+  </section>
+  
+
+      <!-- Sign Out -->
+      <section id="signout" class="tab-content">
+        <h1>Sign Out</h1>
+        <p>You have been signed out.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="../assets/js/profile.js"></script>
+
+  
+</body>
+</html>

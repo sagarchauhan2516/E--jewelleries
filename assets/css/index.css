@@ -1,0 +1,186 @@
+.navbar-brand {
+  color: #ca9307;
+}
+
+.navbar-toggler {
+  color: #ca9307;
+}
+
+.profile-icon img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #ffc107; /* Optional: yellow border */
+}
+
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.ticker-container {
+  background: #624901c7;
+  color: #fcfbfb;
+  overflow: hidden;
+  white-space: nowrap;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 10px 0;
+}
+
+.ticker {
+  display: inline-block;
+  padding-left: 100%;
+  animation: ticker 20s linear infinite;
+}
+
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+
+#carouselExampleFade {
+  max-width: 100%;
+  width: auto;
+  margin: 20px auto;
+  padding-bottom: 0px;
+}
+
+.carousel-control {
+  width: auto;
+}
+
+.carousel-inner {
+  max-height: 100%;
+}
+
+.carousel-item img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  border-radius: 7px;
+  animation: fadein 2s ease-in-out; 
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+    tranform: scale(1.15);
+  }
+  to {
+    opacity: 1;
+    tranform: scale(1);
+  }
+}
+
+.features {
+  height: max-content;
+  margin: 5px;
+  border: 2px solid rgb(186, 158, 0);
+  border-radius: 7px;
+  color: rgb(105, 0, 0);
+  padding: 15px;
+  margin-top: 20px;
+  
+  justify-content: center;
+  gap: 20px;
+
+}
+
+.featured-head {
+  display: flexbox;
+  font-size: 40px;
+  text-align: center;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: bold;
+
+}
+
+.card {
+  display: flex;
+  gap: 20px;
+  margin-top: 25px;
+  width:fit-content; /* Ensure responsiveness */
+  max-width: 400px; /* Limit size */
+  height: fit-content;
+  margin: 7px auto;
+  position: relative;
+  z-index: 3;
+  overflow: hidden;
+}
+
+.card-header {
+  background-color: rgb(249, 244, 225);
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: bold;
+  text-align: center;
+}
+.card-title{
+  font-family:Arial, Helvetica, sans-serif;
+ 
+  font-weight: bold;
+  color:#e1b340;
+  text-shadow: #0e0e0e 1px 4px 6px;
+  -webkit-text-stroke: 0.5px #000000;
+}
+
+.card-text {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: justify;
+  
+}
+
+.card-img-top {
+  height: 350px;
+  width: 100%;
+  object-fit: cover;
+ 
+}
+
+.card-img-top:hover {
+  transform: scale(1.08); /* Zoom effect on hover */
+  transition: transform 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Image Container for Overlay */
+.image-container {
+  position: relative;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.overlay-text {
+  position:sticky;
+  text-align: center;
+  background:  rgba(249, 244, 225, 0.295); /* Better contrast */
+  color: rgb(15, 15, 15);
+  padding: 4px;
+  align-self: center;
+  
+  width: 100%;
+  font-weight: bold;
+  margin: 5px;;
+}
+
+.try-on-button {
+
+  background-color: #e1b340;
+  border: 4px solid #e1b340;
+  border-radius: 5px;
+  padding: 8px 16px;
+  color: rgb(7, 7, 7);
+  text-decoration: none;
+  font-weight: bold;
+  display: inline-block; 
+  width: fit-content;
+  text-align: center;
+}
+
+.try-on-button:hover {
+  background-color: #ffffff;
+  border: 4px solid #e1b340;
+}
