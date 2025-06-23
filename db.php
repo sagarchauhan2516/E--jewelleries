@@ -2,10 +2,10 @@
 // db.php
 
 function getDBConnection() {
-    $host = 'localhost';
-    $dbname = 'e-jewelleries';
-    $username = 'root';
-    $password = '';
+    $host = 'zgx02.h.filess.io';
+    $dbname = 'ejewelleries_welcomekey';
+    $username = 'ejewelleries_welcomekey';
+    $password = 'f254bf078179433b71cc921505afeff83183ab09';
 
     try {
         $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
