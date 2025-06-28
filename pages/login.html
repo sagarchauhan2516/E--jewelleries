@@ -23,57 +23,52 @@
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="../index.html">
-                <img src="../images/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-            </a>
-            <a class="navbar-brand fw-bold" href="../" id="navbar-brand">E -Jewelleries </a>
-
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-warning" type="submit">Search</button>
-            </form>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">GemCraft</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Gold
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Ring</a></li>
-                            <li><a class="dropdown-item" href="#">Bangles</a></li>
-                            <li><a class="dropdown-item" href="#">Earrings</a></li>
-                            <li><a class="dropdown-item" href="#">Necklaces</a></li>
-                        </ul>
-                    </li>
-
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="true">
-                            Silver
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Ring</a></li>
-                            <li><a class="dropdown-item" href="#">Bangles</a></li>
-                            <li><a class="dropdown-item" href="#">Earrings</a></li>
-                            <li><a class="dropdown-item" href="#">Necklaces</a></li>
-
-                        </ul>
-                    </li>
-                </ul>
-
-            </div>
+    <div class="container-fluid">
+        <a class="navbar-brand" href="../index.html">
+            <img src="../images/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
+      <a class="navbar-brand fw-bold" href="../index.html" id="navbar-brand">E - Jewellery Shop </a>
+    
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="try-on.html">Virtual Try-On</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Jewellery Size Guide.html">Size Guide</a>
+          </li>    
+          <li class="nav-item">
+              <a class="nav-link" href="about_us.html">About Us</a>
+            </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="../products.php">Our Collections</a>
+          </li>
+        </ul>
+        <div class="d-flex">
+          <a href="Registration.html" class="btn btn-outline-warning me-2 text-dark">Register</a>
+          <a href="login.html" class="btn btn-warning me-2">Login</a>
         </div>
-    </nav>
-  
+        <div class="d-flex align-items-center">
+          <div class="profile-icon ms-2">
+            <a href="../profile.php">
+              <img src="../images/default_avatar.jpg" alt="Profile" id="profilePic">
+            </a>
+          </div>
+        
+      </div>
+        
+      </div>
+    </div>
+  </nav>
     
     <h1 class="text-center my-4">Login</h1>
 <form class="container registration-form" style="max-width: 600px;" action="../login.php" method="post">
@@ -93,26 +88,24 @@
     <span class="input-group-text"><i class="fa-solid fa-lock"></i></span>
     <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
   </div>
-
-
-
-
-
-
                             <div class="submit-button text-center">
 
                                 <button type="submit" class="btn btn-warning px-4">Login</button>
+                                
                                 <button type="reset" class="btn btn-secondary px-4 me-2">Reset</button>
+                                <a href="../admin.php"><button type="button" class="btn btn-warning px-4" >Admin Panel</button> </a>
                             </div>
                             <div class="text-center mt-3">
                               
                               <p>Forgot your password? <a href="forgot_password.html" class="text-primary">Change Password</a></p>
                             <div class="text-center mt-3">
                               <p>Don't have an account? <a href="Registration.html" class="text-primary">Register here</a></p>
+                               <div class="text-center mt-3">
+                              <p>Want manage Products ? <a href="../admin.php" class="text-primary">Go to Admin Panel</a></p>
 
                         </form>
                       </div>
-
+                      
                     </div>
                 </div>
             </div>
