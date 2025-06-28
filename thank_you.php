@@ -6,6 +6,7 @@
     <title>Thank You</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
+        /* Your existing CSS styles */
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f4f4f4;
@@ -76,21 +77,21 @@
         <?php
         // Check if the form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            
+
             // Collect data safely
             $serviceType = htmlspecialchars($_POST['service_type'] ?? '');
-
-            // Capture the new 'repair_service' field
             $repairService = htmlspecialchars($_POST['repair_service'] ?? '');
 
-            // Existing fields (these might be empty if the 'Repair Jewellery' form is submitted)
+            // Existing fields
             $jewelleryType = htmlspecialchars($_POST['jewellery_type'] ?? '');
             $preferredStyle = htmlspecialchars($_POST['preferred_style'] ?? '');
             $materialUpgrade = is_array($_POST['material_upgrade'] ?? []) ? implode(", ", $_POST['material_upgrade'] ?? []) : '';
             $metalType = htmlspecialchars($_POST['metal_type'] ?? '');
-            $weight = htmlspecialchars($_POST['weight'] ?? ''); // This might be from another form type
-            $material = htmlspecialchars($_POST['material'] ?? ''); // This might be from another form type
+            $weight = htmlspecialchars($_POST['weight'] ?? '');
+            $material = htmlspecialchars($_POST['material'] ?? '');
 
+            // NEW: Capture the estimated price
+            $estimatedPrice = htmlspecialchars($_POST['estimated_price'] ?? 'N/A');
 
             // Build the output message
             $output = "<h1>Thank you for your request!</h1>";
@@ -100,7 +101,6 @@
             if (!empty($repairService)) {
                 $output .= "<p><strong>Repair Service:</strong> " . $repairService . "</p>";
             }
-            // These fields below will only show if they were submitted and not empty
             if (!empty($jewelleryType)) {
                 $output .= "<p><strong>Jewellery Type:</strong> " . $jewelleryType . "</p>";
             }
@@ -110,7 +110,7 @@
             if (!empty($materialUpgrade)) {
                 $output .= "<p><strong>Material Upgrade:</strong> " . $materialUpgrade . "</p>";
             }
-            if (!empty($metalType)) { // This field is present in both forms
+            if (!empty($metalType)) {
                 $output .= "<p><strong>Metal Type:</strong> " . $metalType . "</p>";
             }
             if (!empty($weight)) {
@@ -119,6 +119,13 @@
             if (!empty($material)) {
                 $output .= "<p><strong>Material:</strong> " . $material . "</p>";
             }
+
+            // NEW: Display the estimated price
+            if ($estimatedPrice !== 'N/A') {
+                $output .= "<p><strong>Estimated Price:</strong> ₹" . number_format((float)$estimatedPrice, 2) . "</p>";
+                $output .= "<p><em>(This is an initial estimate. Final price may vary upon detailed consultation.)</em></p>";
+            }
+
 
             echo $output;
 

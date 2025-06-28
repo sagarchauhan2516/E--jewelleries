@@ -8,52 +8,53 @@ ini_set('display_errors', 1);
 // Include database connection function
 require_once 'db.php';
 
-// --- FIX 1: Call the function to get the PDO connection object ---
-$conn = getDBConnection(); // Assign the returned PDO object to $conn
+$conn = getDBConnection();
 
-// Check if connection was successful (getDBConnection() already handles die(), but good practice)
 if (!$conn) {
     echo "Database connection failed. Please try again later.";
     exit();
 }
 
-// Check if the request method is POST
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    // Redirect or display an error if not a POST request
-    header("Location: login_form.html"); // Redirect to your login form
+    header("Location: login.html");
     exit();
 }
 
-// Sanitize inputs
 $username = htmlspecialchars(trim($_POST['username'] ?? ''));
-$password = $_POST['password'] ?? ''; // Password will be hashed, so no htmlspecialchars here yet
+$password = $_POST['password'] ?? '';
 
-// Basic validation
 if (empty($username) || empty($password)) {
     echo "❌ Please enter both username and password.";
     exit();
 }
 
 try {
-    // --- FIX 2: Use PDO prepared statements for security and compatibility ---
-    // Prepare the SQL statement to prevent SQL injection
     $stmt = $conn->prepare("SELECT id, username, password FROM users WHERE username = ?");
     $stmt->execute([$username]);
-
-    // Fetch the user data
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    // Check if a user was found
     if ($user) {
-        // Verify the password
         if (password_verify($password, $user['password'])) {
             // Password is correct, set session variables
-            $_SESSION['user_id'] = $user['id']; // Store user ID
+            $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
-            // You might want to set a login timestamp or other session data
 
-            // Redirect to profile page
-            header("Location: profile.php"); // or index.html
+            // --- NEW: Cart Functionality Integration ---
+            // If you have a database-backed cart, you might load it here.
+            // For now, let's assume a session-based cart initially.
+            // Initialize cart in session if it doesn't exist
+            if (!isset($_SESSION['cart'])) {
+                $_SESSION['cart'] = [];
+            }
+            // If you had guest cart items, you might want to merge them here.
+            // Example: If a guest added items, and then logged in.
+            // This requires a more complex logic, usually involving client-side JS or
+            // checking a temporary guest cart storage before login.
+            // For simplicity, we'll assume a fresh or empty cart for new logins
+            // unless you explicitly load from DB.
+
+            // Redirect to profile page or a page that will display cart
+            header("Location: profile.php"); // Or wherever you want to direct after login
             exit();
         } else {
             echo "❌ Incorrect password.";
@@ -63,11 +64,8 @@ try {
     }
 
 } catch (PDOException $e) {
-    // Catch PDO exceptions (database errors)
     echo "Database error: " . $e->getMessage();
-    // In a production environment, you might log the error instead of displaying it.
 } catch (Exception $e) {
-    // Catch any other general exceptions
     echo "An unexpected error occurred: " . $e->getMessage();
 }
 ?>

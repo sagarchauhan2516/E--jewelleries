@@ -77,7 +77,7 @@ try {
     $_SESSION['email'] = $email;
 
     
-    echo json_encode(['status' => 'success', 'message' => 'Registration successful!', 'redirect' => 'profile.php']);
+    echo json_encode(['status' => 'success', 'message' => 'Registration successful!', 'redirect' => '../profile.php']);
 
 } catch (PDOException $e) {
     echo json_encode(['status' => 'error', 'message' => 'Database error: ' . $e->getMessage()]);

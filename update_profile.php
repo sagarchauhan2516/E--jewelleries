@@ -61,6 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $_SESSION['email'] = $email;
 
                 $response = ['status' => 'success', 'message' => 'Profile updated successfully!'];
+                
             } else {
                 // No rows affected means data was the same or an issue
                 $response['message'] = 'No changes detected or profile could not be updated.';

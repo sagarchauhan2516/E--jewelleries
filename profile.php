@@ -52,10 +52,10 @@ if ($conn) {
 
         // Fetch user's rewards (active ones) - joining with rewards table to get details
         $stmt = $conn->prepare("SELECT ur.status, ur.assigned_date, ur.used_date, r.reward_name, r.description, r.expiry_date
-                                FROM user_rewards ur
-                                JOIN rewards r ON ur.reward_id = r.id
-                                WHERE ur.user_id = ?
-                                ORDER BY r.expiry_date ASC");
+                                 FROM user_rewards ur
+                                 JOIN rewards r ON ur.reward_id = r.id
+                                 WHERE ur.user_id = ?
+                                 ORDER BY r.expiry_date ASC");
         $stmt->execute([$loggedInUserId]);
         $rewards = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -116,10 +116,77 @@ $gender = $userData['gender'] ?? '';
 <head>
     <meta charset="UTF-8">
     <title>User Profile | E-Jewellery shop</title>
-    <link rel="stylesheet" href="assets/css/profile.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjLqSgpeHfU6ZPMuH/SMy" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/main.css">
+    <link rel="stylesheet" href="assets/css/profile.css">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+  
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html" id="navbar-brand-text">E-Jewellery Shop</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+               
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+            <a class="nav-link" href="pages/try-on.html">Virtual Try-On</a>
+          </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/Jewellery Size Guide.html">Size Guide</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/about_us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/contact.html">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.php">Our Collections</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="cart.php">Cart (<span id="cart-item-count">0</span>)</a>
+                    </li>
+                    <?php if (isset($_SESSION['user_id'])): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="profile.php">Welcome, <?php echo htmlspecialchars($loggedInUsername); ?>!</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout.php">Logout</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="btn btn-outline-warning mx-2" href="register.php">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="btn btn-warning" href="login.php">Login</a>
+                        </li>
+                    <?php endif; ?>
+                    <li class="nav-item">
+                        <a class="nav-link profile-icon" href="profile.php">
+                            <img src="<?php echo $profilePicSrc; ?>" alt="Profile">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5 pt-3">
         <aside class="sidebar">
             <div class="profile-summary">
                 <form id="avatarUploadForm" action="upload_profile_picture.php" method="POST" enctype="multipart/form-data">
@@ -300,9 +367,9 @@ $gender = $userData['gender'] ?? '';
                                     $orderItems = [];
                                     try {
                                         $stmtItems = $conn->prepare("SELECT oi.quantity, oi.price, p.product_name, p.image_path
-                                                                    FROM order_items oi
-                                                                    JOIN products p ON oi.product_id = p.id
-                                                                    WHERE oi.order_id = ?");
+                                                                     FROM order_items oi
+                                                                     JOIN products p ON oi.product_id = p.id
+                                                                     WHERE oi.order_id = ?");
                                         $stmtItems->execute([$order['id']]);
                                         $orderItems = $stmtItems->fetchAll(PDO::FETCH_ASSOC);
                                     } catch (PDOException $e) {
@@ -315,11 +382,13 @@ $gender = $userData['gender'] ?? '';
                                             <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 5px;">
                                                 <?php
                                                 // Construct image path for product
-                                                $productImageSrc = 'images/default_product.jpg'; // Default product image
+                                                $productImageSrc = '../images/default_product.jpg'; // Default product image. Corrected path.
                                                 if (!empty($item['image_path'])) {
-                                                    $productUploadedPath = 'uploads/products/' . htmlspecialchars($item['image_path']);
+                                                    $productUploadedPath = '../uploads/products/' . htmlspecialchars($item['image_path']); // Corrected path.
                                                     // Assuming product images are in E-Jewelleries/uploads/products/
-                                                    if (file_exists(__DIR__ . '/' . $productUploadedPath)) {
+                                                    // The current file (profile.php) is in C:\xampp\htdocs\E-Jewelleries\pages
+                                                    // So, to reach 'uploads', we need to go up one directory (../)
+                                                    if (file_exists(__DIR__ . '/' . $productUploadedPath)) { // This check should be relative to profile.php
                                                         $productImageSrc = $productUploadedPath;
                                                     }
                                                 }
@@ -453,9 +522,9 @@ $gender = $userData['gender'] ?? '';
                             <option value="Discover">Discover</option>
                             <option value="Other">Other</option>
                         </select>
-                         <label style="display: flex; align-items: center; gap: 5px; margin-top: 5px;">
-                            <input type="checkbox" name="is_default" value="1"> Set as default
-                        </label>
+                           <label style="display: flex; align-items: center; gap: 5px; margin-top: 5px;">
+                               <input type="checkbox" name="is_default" value="1"> Set as default
+                           </label>
                         <button type="submit" style="padding: 8px 16px; background-color: #d4a017; color: white; border: none; border-radius: 5px; margin-top: 10px;">Save Card</button>
                     </form>
                 </div>
@@ -491,153 +560,99 @@ $gender = $userData['gender'] ?? '';
 
                     <div style="margin-bottom: 15px;">
                         <h3 style="margin: 0;">How do I return an item?</h3>
-                        <p>To return an item, please visit the "My Orders" section and follow the return instructions. Returns are accepted within 30 days of purchase.</p>
-                    </div>
+                        <p>To return an item</p>
                 </div>
             </section>
 
-
             <section id="signout" class="tab-content">
                 <h1>Sign Out</h1>
-                <p>Click the button below to securely sign out of your account.</p>
-                <a href="logout.php" style="padding: 10px 20px; background-color: #dc3545; color: white; border: none; border-radius: 5px; text-decoration: none;">Log Out</a>
+                <div style="background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.05);">
+                    <p>Are you sure you want to sign out?</p>
+                    <a href="logout.php" style="display: inline-block; padding: 10px 20px; background-color: #d4a017; color: white; text-decoration: none; border-radius: 5px;">Yes, Sign Out</a>
+                </div>
             </section>
         </main>
     </div>
 
-    <script>
-        // JavaScript to trigger form submission when file is selected
-        document.getElementById('avatarUpload').addEventListener('change', function() {
-            document.getElementById('avatarUploadForm').submit();
-        });
-        // Optional: Preview the image before upload (client-side)
-        document.getElementById('avatarUpload').addEventListener('change', function(event) {
-            if (event.target.files && event.target.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('avatarPreview').src = e.target.result;
-                };
-                reader.readAsDataURL(event.target.files[0]);
-            }
-        });
-
-        // JavaScript for tab switching (assuming you have this in profile.js or embedded)
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcqNpVEjE9S/6o" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="../assets/js/main.js"></script> <script>
+        // Profile specific JavaScript
         document.addEventListener('DOMContentLoaded', function() {
-            const navItems = document.querySelectorAll('.sidebar nav ul li');
+            const sidebarLinks = document.querySelectorAll('.sidebar nav ul li');
             const tabContents = document.querySelectorAll('.tab-content');
 
-            navItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // Remove active class from all nav items and tab contents
-                    navItems.forEach(nav => nav.classList.remove('active'));
-                    tabContents.forEach(tab => tab.classList.remove('active'));
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    // Remove active class from all links and contents
+                    sidebarLinks.forEach(item => item.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
 
-                    // Add active class to clicked nav item
+                    // Add active class to clicked link
                     this.classList.add('active');
 
-                    // Show the corresponding tab content
+                    // Show corresponding tab content
                     const targetSectionId = this.dataset.section;
                     document.getElementById(targetSectionId).classList.add('active');
                 });
             });
 
-            // Gender selection for Personal Information form
+            // Initial display: show the first section (wallet)
+            if (sidebarLinks.length > 0) {
+                sidebarLinks[0].classList.add('active');
+                tabContents[0].classList.add('active');
+            }
+
+            // Handle profile picture upload preview
+            const avatarUpload = document.getElementById('avatarUpload');
+            const avatarPreview = document.getElementById('avatarPreview');
+            const uploadButton = document.getElementById('uploadButton');
+
+            if (avatarUpload && avatarPreview) {
+                avatarUpload.addEventListener('change', function() {
+                    if (this.files && this.files[0]) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            avatarPreview.src = e.target.result;
+                            uploadButton.style.display = 'block'; // Show upload button when a file is selected
+                        };
+                        reader.readAsDataURL(this.files[0]);
+                    }
+                });
+            }
+
+            // Gender selection for Personal Information
             window.selectGender = function(gender) {
                 document.querySelectorAll('.gender-btn').forEach(btn => btn.classList.remove('active'));
                 event.target.classList.add('active');
-                document.getElementById('genderInput').value = gender; // Set hidden input value
+                document.getElementById('genderInput').value = gender;
             };
 
-            // Set initial gender button active based on fetched data
-            const initialGender = document.getElementById('genderInput').value;
-            if (initialGender) {
-                const genderButton = document.querySelector(`.gender-btn[onclick="selectGender('${initialGender}')"]`);
-                if (genderButton) {
-                    genderButton.classList.add('active');
-                }
-            }
-
-            // Client-side validation/submission for profile update (optional, but good)
-            const profileForm = document.getElementById('profileForm');
-            if (profileForm) {
-                profileForm.addEventListener('submit', async function(event) {
-                    event.preventDefault();
-                    // You might want to add client-side validation here
-                    const formData = new FormData(this);
-                    try {
-                        const response = await fetch(this.action, {
-                            method: this.method,
-                            body: formData
-                        });
-                        const data = await response.json(); // Assuming update_profile.php returns JSON
-
-                        if (data.status === 'success') {
-                            alert(data.message);
-                            // Optionally, refresh part of the page or just reload
-                            window.location.reload();
+            // Dynamic Cart Count Update
+            function updateCartCount() {
+                $.ajax({
+                    url: '../api/get_cart_count.php', // Adjust path if necessary
+                    method: 'GET',
+                    success: function(response) {
+                        if (response.status === 'success') {
+                            $('#cart-item-count').text(response.count);
                         } else {
-                            alert('Error updating profile: ' + (data.message || 'Unknown error.'));
+                            console.error('Failed to get cart count:', response.message);
                         }
-                    } catch (error) {
-                        console.error('Error submitting profile form:', error);
-                        alert('Could not update profile. Network error.');
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX error:', status, error);
                     }
                 });
             }
 
-            // Client-side validation/submission for add address (optional)
-            const addAddressForm = document.getElementById('addAddressForm');
-            if (addAddressForm) {
-                addAddressForm.addEventListener('submit', async function(event) {
-                    event.preventDefault();
-                    const formData = new FormData(this);
-                    try {
-                        const response = await fetch(this.action, {
-                            method: this.method,
-                            body: formData
-                        });
-                        const data = await response.json(); // Assuming add_address.php returns JSON
+            // Call it on page load
+            updateCartCount();
 
-                        if (data.status === 'success') {
-                            alert(data.message);
-                            window.location.reload(); // Reload to show new address
-                        } else {
-                            alert('Error adding address: ' + (data.message || 'Unknown error.'));
-                        }
-                    } catch (error) {
-                        console.error('Error submitting address form:', error);
-                        alert('Could not add address. Network error.');
-                    }
-                });
-            }
-
-            // Similar client-side logic for add payment method form
-            const addPaymentMethodForm = document.querySelector('#payment-methods form[action="add_payment_method.php"]');
-            if (addPaymentMethodForm) {
-                addPaymentMethodForm.addEventListener('submit', async function(event) {
-                    event.preventDefault();
-                    const formData = new FormData(this);
-                    try {
-                        const response = await fetch(this.action, {
-                            method: this.method,
-                            body: formData
-                        });
-                        const data = await response.json(); // Assuming add_payment_method.php returns JSON
-
-                        if (data.status === 'success') {
-                            alert(data.message);
-                            window.location.reload(); // Reload to show new payment method
-                        } else {
-                            alert('Error adding payment method: ' + (data.message || 'Unknown error.'));
-                        }
-                    } catch (error) {
-                        console.error('Error submitting payment method form:', error);
-                        alert('Could not add payment method. Network error.');
-                    }
-                });
-            }
-
+            // Optionally, refresh cart count periodically or after actions that change cart
+            // setInterval(updateCartCount, 30000); // Update every 30 seconds
         });
     </script>
-    <script src="assets/js/profile.js"></script> </body>
+</body>
 </html>

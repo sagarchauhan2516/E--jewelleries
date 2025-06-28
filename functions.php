@@ -3,28 +3,29 @@
 
 // IMPORTANT: Ensure session is started only once.
 // This block ensures session_start() is called if a session hasn't already been started.
+// This is a good safeguard. The primary session_start() should still be at the very top of your main entry scripts (like profile.php).
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// IMPORTANT: Include db.php here if getUsername() needs it and is called before profile.php includes it.
-// This assumes db.php is in the same directory (root) as functions.php
-require_once 'db.php';
+// IMPORTANT: Include db.php here as getUsername() and other functions might need it.
+// This assumes db.php is in the same directory (root: C:\xampp\htdocs\E-Jewelleries) as functions.php
+require_once __DIR__ . '/db.php'; // Use __DIR__ for robust path resolution
 
 
 // Function to check if a user is logged in
-function isLoggedIn() {
+function isLoggedIn(): bool {
     // Check if 'user_id' is set AND is not empty (e.g., 0 or null)
     return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
 }
 
 // Function to get the logged-in user's ID
-function getUserId() {
+function getUserId(): ?int { // Return type hint for clarity
     return $_SESSION['user_id'] ?? null;
 }
 
 // Function to get the logged-in user's username
-function getUsername() {
+function getUsername(): ?string { // Return type hint for clarity
     // Prefer to get username from session first to avoid repeated DB queries
     if (isset($_SESSION['username'])) {
         return $_SESSION['username'];
@@ -32,7 +33,7 @@ function getUsername() {
 
     // If not in session, try to fetch from DB using user_id
     $user_id = getUserId();
-    if ($user_id) {
+    if ($user_id !== null) { // Use strict comparison
         $conn = getDBConnection(); // Assuming getDBConnection() is defined in db.php
         if ($conn) {
             try {
@@ -45,50 +46,49 @@ function getUsername() {
                     return $user['username'];
                 }
             } catch (PDOException $e) {
+                // Log the error for debugging purposes (e.g., to your server's error log)
                 error_log("Error fetching username in getUsername(): " . $e->getMessage());
+                // In a production environment, you might not want to expose this error to the user
             }
+        } else {
+            // Log if DB connection failed, though getDBConnection should handle this
+            error_log("Database connection failed in getUsername().");
         }
     }
     return null; // Return null if username cannot be determined
 }
 
 // Function to redirect to login page if user is not logged in
-function redirectToLoginIfNotLoggedIn() {
+function redirectToLoginIfNotLoggedIn(): void { // Return type hint for clarity
     if (!isLoggedIn()) {
-        // Determine the correct path to login.html (or login.php)
-        // Given your previous setup, profile.php is in 'pages/'
-        // and login.html is also in 'pages/'.
-        // So, from a script in 'pages/' (like profile.php), 'login.html' is correct.
-        // If the script calling this function is in the root, it would be 'pages/login.html'.
+        // Determine the correct path for redirection.
+        // If profile.php is in /pages/ and login.php (or login.html) is also in /pages/,
+        // then the redirect path should be relative to the current URL.
+        // Example: If current URL is http://localhost/E-Jewelleries/pages/profile.php
+        // and target is http://localhost/E-Jewelleries/pages/login.php
+        // then 'login.php' is the correct relative path.
 
-        // To make it robust regardless of where the calling script is:
-        // Option 1 (Recommended for scripts included by 'pages/profile.php'):
-        header('Location: pages/login.html'); // Assuming login.html is in the same directory as profile.php (pages/)
-        // If you process login via login.php:
-        // header('Location: login.php'); // Assuming login.php is in the same directory (pages/)
-        // Note: Your file structure image shows login.html AND login.php. Be consistent.
-        // If login.php processes login and then redirects, and login.html is the form, then redirect to login.html.
+        // It's generally best practice to redirect to the PHP login script
+        // if it handles the form submission, even if it might show an HTML form.
+        // Assuming login.php is the target for login actions.
+        header('Location: pages/login.html'); // Corrected path (relative to the calling script in the 'pages' directory)
 
-        // Option 2 (More robust, absolute path from web root):
-        // You'd need to define a base URL, e.g., in a config file:
-        // define('BASE_URL', 'http://localhost/E-Jewelleries/');
-        // header('Location: ' . BASE_URL . 'pages/login.html');
-        // This requires BASE_URL to be defined and correctly configured.
-
-        // Sticking with Option 1 for now, assuming profile.php in pages/ and login.html in pages/
-        // If login.php is the actual login form, use that instead of login.html
+        // If you specifically want to redirect to login.html (a static form page):
+        // header('Location: login.html');
 
         exit(); // CRITICAL: Stop script execution after redirect
     }
 }
 
-// You might also have other functions here, like:
-/*
-function sanitizeInput($data) {
-    // Basic sanitization example
+// Example of a basic input sanitization function
+function sanitizeInput(string $data): string {
     $data = trim($data);
     $data = stripslashes($data);
-    $data = htmlspecialchars($data);
+    $data = htmlspecialchars($data, ENT_QUOTES, 'UTF-8'); // Ensure proper HTML escaping and character set
     return $data;
 }
-*/
+
+// You can add more general utility functions here as needed
+// e.g., for form validation, message handling, etc.
+
+?>

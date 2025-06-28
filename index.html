@@ -16,33 +16,36 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">
+        <a class="navbar-brand" href="index.html">
             <img src="images/logo.png" alt="" width="30" height="30" class="d-inline-block align-text-top">
-      <a class="navbar-brand fw-bold" href="#" id="navbar-brand">E - Jewellery Shop </a>
+      <a class="navbar-brand fw-bold" href="index.html" id="navbar-brand">E - Jewellery Shop </a>
     
-      <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-warning" type="submit">Search</button>
-      </form>
+      <form class="d-flex" action="search.php" method="GET">
+  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="query">
+  <button class="btn btn-outline-warning" type="submit">Search</button>
+</form>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#home">Home</a>
+            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">GemRestore</a>
+            <a class="nav-link" href="pages/try-on.html">Virtual Try-On</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Size</a>
+            <a class="nav-link" href="pages/Jewellery Size Guide.html">Size Guide</a>
           </li>    
           <li class="nav-item">
-              <a class="nav-link" href="#">About Us</a>
+              <a class="nav-link" href="pages/about_us.html">About Us</a>
             </li>
           <li class="nav-item">
             <a class="nav-link" href="pages/contact.html">Contact Us</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="products.php">Our Collections</a>
           </li>
         </ul>
         <div class="d-flex">
@@ -52,7 +55,7 @@
         <div class="d-flex align-items-center">
           <div class="profile-icon ms-2">
             <a href="profile.php">
-              <img src="images/WhatsApp Image 2025-05-10 at 22.33.47_8dd887ca.jpg" alt="Profile" id="profilePic">
+              <img src="images/default_avatar.jpg" alt="Profile" id="profilePic">
             </a>
           </div>
         
@@ -97,62 +100,117 @@
         </button>
       </div>
 
-      <section class="features" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100" data-aos-easing="ease-in-out">
-        <h1 class="featured-head text-center my-4">Our Features</h1>
-      
-        <div class="container">
-          <div class="row">
-            <!-- First Card -->
+     <section class="features" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100" data-aos-easing="ease-in-out">
+    <h1 class="featured-head text-center my-4">Our Features</h1>
+
+    <div class="container">
+        <div class="row">
             <div class="col-md-4 mb-4">
-              <div class="card " data-aos="fade-up" data-aos-duration="1200" data-aos-delay="120" data-aos-easing="ease-in-out">
-                <h5 class="card-header text-center">Virtual Try-On</h5>
-                <div class="card-body text-center">
-                  <div class="image-container">
-                    <img src="images/try-on.jpg" alt="Try-on Image" class="card-img-top">
-                    <div class="overlay-text">
-                      <h3 class="card-title">Gemify Your Look</h3>
-                      <p class="card-text">"Try our AR-powered Virtual Try-On for a real-time jewellery preview!"</p>
+                <div class="card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="120" data-aos-easing="ease-in-out">
+                    <h5 class="card-header text-center">Virtual Try-On</h5>
+                    <div class="card-body text-center">
+                        <div class="image-container">
+                            <img src="images/try-on.jpg" alt="Try-on Image" class="card-img-top">
+                            <div class="overlay-text">
+                                <h3 class="card-title">Gemify Your Look</h3>
+                                <p class="card-text">"Try our AR-powered Virtual Try-On for a real-time jewellery preview!"</p>
+                            </div>
+                        </div>
+                        <a href="pages/try-on.html" class="btn btn-warning mt-3">Let's Try</a>
                     </div>
-                  </div>
-                  <a href="#" class="btn btn-warning mt-3">Let's Try</a>
                 </div>
-              </div>
             </div>
-      
-            <!-- Second Card -->
+
             <div class="col-md-4 mb-4">
-              <div class="card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="110" data-aos-easing="ease-in-out">
-                <h5 class="card-header text-center">Customize Jewelleries</h5>
-                <div class="card-body text-center">
-                  <div class="image-container">
-                    <img src="images/customization.png" alt="Try-on Image" class="card-img-top">
-                    <div class="overlay-text">
-                      <h3 class="card-title">Sparkle Studio</h3>
-                      <p class="card-text">"Customize your jewellery, your way — crafted uniquely for you!."</p>
-                    </div>
-                  </div>
-                  <a href="#" class="btn btn-warning mt-3">Let's Try</a>
+                <div class="card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="110" data-aos-easing="ease-in-out">
+                    <h5 class="card-header text-center">Our Collections</h5>
+                    <div class="card-body text-center">
+                        <div class="image-container">
+                            <img src="images/nackles.webp" alt="Collection Image" class="card-img-top">
+                            <div class="overlay-text">
+                                <h3 class="card-title">Our Collections</h3>
+                                <p class="card-text">"See Our Large Variety of Collections"</p>
+                            </div>
+                        </div>
+                        <a href="products.php" class="btn btn-warning mt-3">Explore Now</a> </div>
                 </div>
-              </div>
             </div>
+
             <div class="col-md-4 mb-4">
-              <div class="card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100" data-aos-easing="ease-in-out">
-                <h5 class="card-header text-center">Jewelleries Restore</h5>
-                <div class="card-body text-center">
-                  <div class="image-container">
-                    <img src="images/Restore.jpeg" alt="Try-on Image" class="card-img-top">
-                    <div class="overlay-text">
-                      <h3 class="card-title">GemRestore</h3>
-                      <p class="card-text">"Restoring elegance and charm to your jewelry!"</p>
-                    </div>
-                  </div>
-                  <a href="#" class="btn btn-warning mt-3">Let's Try</a>
+                <div class="card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100" data-aos-easing="ease-in-out">
+                    <h5 class="card-header text-center">Jewellery Restore</h5>
+                    <div class="card-body text-center">
+                        <div class="image-container">
+                            <img src="images/Restore.jpeg" alt="Restore Image" class="card-img-top">
+                            <div class="overlay-text">
+                                <h3 class="card-title">GemRestore</h3>
+                                <p class="card-text">"Restoring elegance and charm to your jewelry!"</p>
+                            </div>
+                        </div>
+                        <a href="pages/Jewellery_repair.html" class="btn btn-warning mt-3">Learn More</a> </div>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-      </section>
+
+            <div class="col-md-4 mb-4">
+                <div class="card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="110" data-aos-easing="ease-in-out">
+                    <h5 class="card-header text-center">Customize Jewelleries</h5>
+                    <div class="card-body text-center">
+                        <div class="image-container">
+                            <img src="images/customization.png" alt="Customization Image" class="card-img-top">
+                            <div class="overlay-text">
+                                <h3 class="card-title">Sparkle Studio</h3>
+                                <p class="card-text">"Customize your jewellery, your way — crafted uniquely for you!."</p>
+                            </div>
+                        </div>
+                        <a href="create_design.php" class="btn btn-warning mt-3">Design Now</a> </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="110" data-aos-easing="ease-in-out">
+                    <h5 class="card-header text-center">Jewellery Size Guide</h5>
+                    <div class="card-body text-center">
+                        <div class="image-container">
+                            <img src="images/necklace size.webp" alt="Size Guide Image" class="card-img-top"> <div class="overlay-text">
+                                <h3 class="card-title">Size Guide</h3>
+                                <p class="card-text">"See the Size guide"</p>
+                            </div>
+                        </div>
+                        <a href="pages/Jewellery Size Guide.html" class="btn btn-warning mt-3">View Guide</a> </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="120" data-aos-easing="ease-in-out">
+                    <h5 class="card-header text-center">Add Your Products</h5>
+                    <div class="card-body text-center">
+                        <div class="image-container">
+                            <img src="images/admin.png" alt="Live Price Image" class="card-img-top"> <div class="overlay-text">
+                                <h3 class="card-title">Add Yours</h3>
+                                <p class="card-text">"Add and manage your own products."</p>
+                            </div>
+                        </div>
+                        <a href="admin.php" class="btn btn-warning mt-3">Add Yours</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 mb-4">
+                <div class="card" data-aos="fade-up" data-aos-duration="1200" data-aos-delay="120" data-aos-easing="ease-in-out">
+                    <h5 class="card-header text-center">Price Estimate</h5>
+                    <div class="card-body text-center">
+                        <div class="image-container">
+                            <img src="images/estimate.png" alt="Live Price Image" class="card-img-top"> <div class="overlay-text">
+                                <h3 class="card-title">Calculate Price</h3>
+                                <p class="card-text">"Estimate Your Prices"</p>
+                            </div>
+                        </div>
+                        <a href="pages/Jewellery_repair.html" class="btn btn-warning mt-3">Calculate</a>
+                    </div>
+                </div>
+            </div>
+
+        </div> </div> </section>
       
       
       
@@ -171,7 +229,7 @@
     <div class="row">
       <!-- About -->
       <div class="col-md-4 mb-3">
-        <h5 class="text-warning">E-Jewelleries</h5>
+        <h5 class="text-warning">E-Jewellery Shop</h5>
         <p>Explore a stunning collection of gold, diamond and designer jewellery from the comfort of your home.</p>
       </div>
 
@@ -179,10 +237,15 @@
       <div class="col-md-4 mb-3">
         <h5 class="text-warning">Quick Links</h5>
         <ul class="list-unstyled">
-          <li><a href="../index.html" class="text-light text-decoration-none">Home</a></li>
-          <li><a href="#" class="text-light text-decoration-none">Gold</a></li>
-          <li><a href="#" class="text-light text-decoration-none">Silver</a></li>
-          <li><a href="#" class="text-light text-decoration-none">GemCraft</a></li>
+          <li><a href="index.html" class="text-light text-decoration-none">Home</a></li>
+          <li><a href="pages/try-on.html" class="text-light text-decoration-none">Try Jewelleries</a></li>
+          <li><a href="create_design.php" class="text-light text-decoration-none">GemCraft</a></li>
+          <li><a href="products.php" class="text-light text-decoration-none">Our Collections</a></li>
+          
+          <li><a href="pages/Jewellery Size Guide.html" class="text-light text-decoration-none">Jewellery Size Guide</a></li>
+          <li><a href="admin.php" class="text-light text-decoration-none">Go to Admin Controls</a></li> 
+          <li><a href="pages/about_us.html" class="text-light text-decoration-none">About Us</a></li>
+          <li><a href="pages/contact.html" class="text-light text-decoration-none">Contact Us</a></li>
         </ul>
       </div>
 
@@ -201,7 +264,7 @@
     </div>
 
     <hr class="border-light" />
-    <p class="text-center mb-0">&copy; 2025 E-Jewelleries. All rights reserved.</p>
+    <p class="text-center mb-0">&copy; 2025 Digital Diamonds. All rights reserved.</p>
   </div>
 </footer>
 
