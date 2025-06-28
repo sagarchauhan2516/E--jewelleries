@@ -1,112 +1,153 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-direction: column; /* Add this: Stacks elements vertically (navbar, main container, footer) */
+  min-height: 100vh; /* CHANGE THIS: Allows body to grow taller than the viewport */
+  background: #f7f9fc;
+  /* Add padding-top to account for the fixed navbar (adjust 70px if your navbar is a different height) */
+  padding-top: 70px; /* Crucial for content not to be hidden under fixed navbar */
+}
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      display: flex;
-      background: #f7f9fc;
-    }
-    .container {
-      display: flex;
-      width: 100%;
-    }
-    .sidebar {
-      width: 250px;
-      background: white;
-      padding: 20px;
-      border-right: 1px solid #ddd;
-      height: 100vh;
-    }
-    .sidebar .profile-summary {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    .sidebar img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-    }
-    .sidebar h2 {
-      font-size: 18px;
-      margin-top: 10px;
-    }
-    .sidebar ul {
-      list-style: none;
-      padding: 0;
-    }
-    .sidebar ul li {
-      padding: 10px;
-      cursor: pointer;
-      border-radius: 5px;
-    }
-    .sidebar ul li.active {
-      background-color: #f1e1b0;
-      font-weight: bold;
-    }
+/* Remove height: 100vh; from .container, let it be flexible */
+.container {
+  flex-grow: 1; /* This is good, makes it take available space */
+  display: flex;
+  width: 100%; /* The width is likely okay, but you might want max-width for content centering */
+  /* position: relative; - Can keep this if needed for internal positioning, but not strictly for scrolling */
+  position: relative; /* Keep if you need it for internal absolute positioning, otherwise can be removed */
+  padding-bottom: 20px; /* Add some general padding at the bottom of the container */
+}
 
-    main {
-      flex: 1;
-      padding: 30px;
-    }
+.sidebar {
+  width: 250px;
+  background: white;
+  padding: 20px;
+  border-right: 1px solid #ddd;
+  /* REMOVE height: 100vh; from here */
+  /* If sidebar content itself can be very long, you might add: */
+  /* overflow-y: auto; */ /* This would make the sidebar *itself* scroll if its content is too long, independent of the main page scroll */
+  flex-shrink: 0; /* Prevents sidebar from shrinking if main content needs more space */
+}
+.sidebar .profile-summary {
+  text-align: center;
+  margin-bottom: 30px;
+}
+.sidebar img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.sidebar h2 {
+  font-size: 18px;
+  margin-top: 10px;
+}
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+.sidebar ul li {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+.sidebar ul li.active {
+  background-color: #f1e1b0;
+  font-weight: bold;
+}
 
-    .tab-content {
-      display: none;
-    }
+main {
+  flex: 1; /* This is equivalent to flex-grow: 1, flex-shrink: 1, flex-basis: 0% */
+  padding: 30px;
+  /* If main content gets very wide and causes horizontal scroll issues, you might add: */
+  min-width: 0; /* Important for flex items to handle overflow correctly */
+}
 
-    .tab-content.active {
-      display: block;
-    }
+.tab-content {
+  display: none;
+}
 
-    .input-group {
-      display: flex;
-      gap: 10px;
-    }
+.tab-content.active {
+  display: block;
+}
 
-    input[type="text"], input[type="email"], input[type="tel"], input[type="date"] {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-    }
+.input-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap; /* Added for responsiveness on small screens */
+}
 
-    .gender-toggle {
-      margin-top: 15px;
-    }
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"] {
+  width: 100%; /* Ensure they take full width within their container */
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Ensures padding doesn't add to the width */
+}
 
-    .gender-btn {
-      padding: 10px 20px;
-      margin-right: 10px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      cursor: pointer;
-      background-color: white;
-    }
+.gender-toggle {
+  margin-top: 15px;
+  display: flex; /* Added to arrange buttons side-by-side */
+  gap: 10px; /* Space between buttons */
+}
 
-    .gender-btn.active {
-      background-color: #d4a017;
-      color: white;
-      border: none;
-    }
+.gender-btn {
+  padding: 10px 20px;
+  /* margin-right: 10px; REMOVE THIS, gap handles it */
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  background-color: white;
+}
 
-    .form-actions {
-      margin-top: 20px;
-    }
+.gender-btn.active {
+  background-color: #d4a017;
+  color: white;
+  border: none;
+}
 
-    .save-btn, .cancel-btn {
-      padding: 10px 20px;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
+.form-actions {
+  margin-top: 20px;
+  display: flex; /* Arrange buttons side-by-side */
+  gap: 10px; /* Space between buttons */
+}
 
-    .save-btn {
-      background-color: #d4a017;
-      color: white;
-    }
+.save-btn, .cancel-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
 
-    .cancel-btn {
-      background-color: #aaa;
-      color: white;
-      margin-left: 10px;
-    }
-  
+.save-btn {
+  background-color: #d4a017;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #aaa;
+  color: white;
+  /* margin-left: 10px; REMOVE THIS, gap handles it */
+}
+
+/* Optional: Add styles for your fixed navbar in main.css or similar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1030; /* Ensure it's above other content */
+  /* Add your specific navbar background and styling here */
+  background-color: #343a40; /* Example: use your actual navbar color */
+}
+
+/* Ensure the footer also respects the flex layout of the body */
+footer {
+  flex-shrink: 0; /* Prevents footer from shrinking */
+  width: 100%; /* Ensures footer spans full width */
+  margin-top: auto; /* Pushes the footer to the bottom if content is short */
+}

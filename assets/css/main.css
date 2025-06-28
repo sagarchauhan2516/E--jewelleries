@@ -1,0 +1,276 @@
+
+
+/* assets/css/main.css */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa; /* Light gray background */
+    color: #343a40; /* Dark text */
+    line-height: 1.6;
+}
+
+/* Navbar specific styles */
+/* Navbar specific styles */
+.navbar {
+    background-color: #f6f6f6 !important; /* Changed to a very dark gray/black */
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+#navbar-brand-text {
+    color: #ca9307; /* Orange color for brand text */
+    font-size: 1.5rem;
+    font-weight: 700;
+   font-family: "Lucida Handwriting", cursive; 
+}
+
+
+
+.navbar-nav .nav-link {
+    color: #000000 !important; /* White text for navigation links */
+    font-weight: 500;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: #FFA500 !important; /* Orange on hover/active */
+    text-decoration: underline;
+}
+
+.navbar-toggler {
+    border-color: rgba(172, 202, 23, 0.1);
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.8%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+}
+
+.btn-outline-warning {
+    color: #FFA500 !important; /* Orange text */
+    border-color: #FFA500 !important; /* Orange border */
+    transition: all 0.3s ease;
+}
+
+.btn-outline-warning:hover {
+    background-color: #FFA500 !important;
+    color: #212121 !important; /* Dark text on hover */
+}
+
+.btn-warning {
+    background-color: #FFA500 !important; /* Orange background */
+    border-color: #FFA500 !important;
+    color: #060606 !important; /* Dark text */
+    transition: all 0.3s ease;
+}
+
+.btn-warning:hover {
+    background-color: #e69500 !important;
+    border-color: #e69500 !important;
+    color: #030303 !important;
+}
+
+/* Profile Icon */
+.profile-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #FFA500; /* Orange border */
+    transition: border-color 0.3s ease;
+}
+
+.profile-icon img:hover {
+    border-color: #e69500;
+}
+
+/* Footer styles */
+footer {
+    background-color: #fbfdff !important; /* Consistent dark background */
+    color: #e0f2f7;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+footer h5 {
+    color: #FFA500; /* Orange headings */
+    margin-bottom: 15px;
+}
+
+footer p {
+    color: #abdbe3; /* Light blue text */
+    margin-bottom: 8px;
+    font-size: 0.95em;
+}
+
+footer .list-unstyled li a {
+    color: #abdbe3;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+footer .list-unstyled li a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+footer .fab {
+    font-size: 1.5em;
+    margin-right: 10px;
+    color: #abdbe3;
+    transition: color 0.3s ease;
+}
+
+footer .fab:hover {
+    color: #FFA500;
+}
+
+footer hr {
+    border-color: rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+footer .text-center {
+    font-size: 0.9em;
+    color: #abdbe3;
+}
+
+/* General alerts - apply these to your product.php as well */
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+/* Modals - shared styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1050; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6); /* Black w/ opacity */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    padding: 30px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    animation: fadeIn 0.3s;
+}
+
+.modal-content h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+.modal-content form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+    margin-top: 15px;
+}
+
+.modal-content form input[type="text"],
+.modal-content form input[type="email"],
+.modal-content form input[type="tel"],
+.modal-content form textarea,
+.modal-content form input[type="password"] {
+    width: calc(100% - 22px); /* Adjust for padding and border */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.modal-content form input:focus,
+.modal-content form textarea:focus {
+    border-color: #FFA500;
+    outline: none;
+    box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.25);
+}
+
+.modal-content form button[type="submit"] {
+    background-color: #FFA500;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    margin-top: 20px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.modal-content form button[type="submit"]:hover {
+    background-color: #e69500;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* Specific Login Modal Adjustments */
+#loginModal .modal-content {
+    max-width: 450px; /* Slightly smaller for login */
+    padding: 25px;
+}
+#loginModal .modal-content h2 {
+    margin-bottom: 15px;
+    font-size: 2em;
+}
+#loginModal .modal-content p {
+    margin-bottom: 15px;
+    font-size: 0.95em;
+}
+#loginModal .modal-content .form-group {
+    margin-bottom: 10px;
+}
+#loginModal .modal-content .mt-3 {
+    margin-top: 15px;
+}
+
+ 

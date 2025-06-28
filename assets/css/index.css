@@ -1,5 +1,6 @@
 .navbar-brand {
   color: #ca9307;
+   font-family: "Lucida Handwriting", cursive; 
 }
 
 .navbar-toggler {
@@ -184,3 +185,7 @@ body {
   background-color: #ffffff;
   border: 4px solid #e1b340;
 }
+
+ #navbar-brand {
+            font-family: "Lucida Handwriting", cursive; /* Example font */
+        }
